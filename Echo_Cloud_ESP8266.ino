@@ -33,7 +33,7 @@ void setup()
   digitalWrite(LED_BUILTIN, HIGH); //turn on LED
 }
 
-void loop() 
+void loop()
 { //loop until it is time to post data to phant cloud, variable "postRate" defines the interval in milli seconds
   if (lastPost + postRate <= millis())
   {
@@ -77,9 +77,9 @@ void initHardware()
 
 //function that handles getting data from phant cloud
 int getFromPhant()
-{ 
- //Set phant data
- Phant phant(PhantHost, gPublicKey, gPrivateKey);
+{
+  //Set phant data
+  Phant phant(PhantHost, gPublicKey, gPrivateKey);
   
   WiFiClient client; //Create client object to communicate with the phant server
  
@@ -89,12 +89,12 @@ int getFromPhant()
   }
 
   //Get data from phant cloud
-    client.print(phant.get()); 
-    client.println();
-   int cTrack = 0; //variable that tracks count to spell stamp
-   bool match = false; //tracks when we have a match with "stamp" and we can then get control data
-   int pCount = 0; //variable used to track when we have control data
-   while(1) { //loop until we get data and server closes connection
+  client.print(phant.get()); 
+  client.println();
+  int cTrack = 0; //variable that tracks count to spell stamp
+  bool match = false; //tracks when we have a match with "stamp" and we can then get control data
+  int pCount = 0; //variable used to track when we have control data
+  while(1) { //loop until we get data and server closes connection
     if (client.available()) { //if data is available from phant server
       char c = client.read(); //read a bite of data from server
       if(!match) { //if true than we have not found the word "stamp" so keep looking
@@ -108,7 +108,6 @@ int getFromPhant()
         }
       }
       else { //if true it means we found a match to "stamp" and we are ready to get control data
-        
         if(pCount == 1) { //if true we are at the point in the data to read control data for node oen
           int dControl = c - '0'; //convert char data to an int by subtract an ASCII zero
           if(dControl == 1 | dControl == 0) digitalWrite(light, dControl); //make sure data is a one or zer and set LED pin with it
@@ -122,8 +121,6 @@ int getFromPhant()
       client.stop(); //stop client, if you don't have this you will create too many clients and server won't let you connect anymore
       break; //This is how we get out of the loop
     }
-   }
-  
+  }
   return 1; // Return success
 }
-  
