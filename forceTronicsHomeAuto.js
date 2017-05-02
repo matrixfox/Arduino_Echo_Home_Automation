@@ -61,8 +61,8 @@ exports.handler = (event, context) => {
 
           default:
             throw "Invalid intent"
-          }
-          break;
+        }
+        break;
 
       case "SessionEndedRequest":
         // Session Ended Request
