@@ -10,17 +10,17 @@
 #include <Phant.h>
 
 //Set your network name and password
-const char* WiFiSSID = "NetworkName"; //your wifi network name goes here
-const char* WiFiPSK = "NetworkPassword"; //your wifi password goes here
+const char* ssid     = "NetworkName"; //your wifi network name goes here
+const char* password = "NetworkPassword"; //your wifi password goes here
 
 //define constants for pin control and node number
 const int light = 4; //NodeMCU GPIO 4 pin is connected to the WiFi AC Switch control
 const char parseKey[] = "stamp"; //This is used to parse through data from Phant to find light setting
 
 //declare phant address and security keys
-const char* PhantHost = "data.sparkfun.com";
-const char* gPublicKey = "YourPublicKey"; //your phant public key goes here
-const char* gPrivateKey = "YourPrivateKey"; //your phant private key goes here
+const char* host = "data.sparkfun.com";
+const char* streamId   = "...................."; //your phant public key goes here
+const char* privateKey = "...................."; //your phant private key goes here
 
 //specify the rate that you post data to cloud
 const unsigned long postRate = 1000;
